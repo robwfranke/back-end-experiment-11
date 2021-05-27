@@ -1,8 +1,5 @@
 package nl.lotrac.bv.controller;
 
-import com.bezkoder.spring.files.uploadmultiple.message.ResponseMessage;
-import com.bezkoder.spring.files.uploadmultiple.model.FileInfo;
-import com.bezkoder.spring.files.uploadmultiple.service.FilesStorageService;
 
 import nl.lotrac.bv.service.FilesStorageService;
 import lombok.extern.slf4j.Slf4j;
@@ -49,24 +46,25 @@ public class FilesController {
       return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
     }
   }
-
-  @GetMapping("/files")
-  public ResponseEntity<List<FileInfo>> getListFiles() {
-    List<FileInfo> fileInfos = filesStorageService.loadAll().map(path -> {
-      String filename = path.getFileName().toString();
-      String url = MvcUriComponentsBuilder
-          .fromMethodName(FilesController.class, "getFile", path.getFileName().toString()).build().toString();
-
-      return new FileInfo(filename, url);
-    }).collect(Collectors.toList());
-
-    return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
-  }
-
-  @GetMapping("/files/{filename:.+}")
-  public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-    Resource file = filesStorageService.load(filename);
-    return ResponseEntity.ok()
-        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-  }
 }
+//
+//  @GetMapping("/files")
+//  public ResponseEntity<List<FileInfo>> getListFiles() {
+//    List<FileInfo> fileInfos = filesStorageService.loadAll().map(path -> {
+//      String filename = path.getFileName().toString();
+//      String url = MvcUriComponentsBuilder
+//          .fromMethodName(FilesController.class, "getFile", path.getFileName().toString()).build().toString();
+//
+//      return new FileInfo(filename, url);
+//    }).collect(Collectors.toList());
+//
+//    return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
+//  }
+//
+//  @GetMapping("/files/{filename:.+}")
+//  public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+//    Resource file = filesStorageService.load(filename);
+//    return ResponseEntity.ok()
+//        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+//  }
+//}
