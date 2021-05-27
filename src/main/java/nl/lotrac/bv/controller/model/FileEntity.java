@@ -1,7 +1,6 @@
-package nl.lotrac.bv.model;
+package nl.lotrac.bv.controller.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
