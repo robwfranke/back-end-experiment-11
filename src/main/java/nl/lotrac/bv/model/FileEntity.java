@@ -1,4 +1,4 @@
-package nl.lotrac.bv.controller.model;
+package nl.lotrac.bv.model;
 
 
 import lombok.EqualsAndHashCode;
