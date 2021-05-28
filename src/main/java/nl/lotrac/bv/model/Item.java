@@ -35,6 +35,7 @@ public class Item {
     private Integer quantity;
 
 
+
     //gedeelte voor order
     @JsonIgnore
     @ManyToOne

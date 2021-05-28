@@ -22,7 +22,7 @@ public interface UserService {
 
     public abstract Collection<User> getUsers();
 
-    public abstract User getUser(String username);
+    public abstract User getUserByUsername(String username);
 
     public abstract boolean userExists(String username);
 
@@ -30,4 +30,6 @@ public interface UserService {
     public abstract Set<Authority> getAuthorities(String username);
     public abstract void addAuthority(String username, Role authority);
     public abstract void removeAuthority(String username, Role authority);
+
+
 }

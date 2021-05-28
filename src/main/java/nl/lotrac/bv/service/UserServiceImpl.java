@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String username) {
+    public User getUserByUsername(String username) {
         log.debug("UserServiceImpl, getUser");
         User user = userRepository.getUserByUsername(username);
         return user;
