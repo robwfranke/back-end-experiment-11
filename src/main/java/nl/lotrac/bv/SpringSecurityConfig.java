@@ -1,4 +1,4 @@
-package nl.lotrac.bv.config;
+package nl.lotrac.bv;
 
 import nl.lotrac.bv.filter.JwtRequestFilter;
 import nl.lotrac.bv.model.Role;

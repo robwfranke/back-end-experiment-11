@@ -54,12 +54,6 @@ public class UserController {
     }
 
 
-// updateUser verhuisd naar AdminController
-//    @PutMapping(value = "/{username}")
-//    public User updateUser(@PathVariable("username") String username, @RequestBody User user) {
-//        userService.updateUser(username, user);
-//        return userService.getUser(username);
-//    }
 
 
     @GetMapping(value = "/authorities")
