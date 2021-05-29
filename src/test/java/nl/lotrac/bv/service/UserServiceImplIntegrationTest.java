@@ -41,9 +41,9 @@ class UserServiceImplIntegrationTest {
 
 @Before
     public void setUp(){
-        User userTest =new User();
+        User userTest =new User("testname");
 
-        userTest.setUsername("testname");
+//        userTest.setUsername("testname");
 
         Mockito
                 .when(userRepository.getUserByUsername(userTest.getUsername()))

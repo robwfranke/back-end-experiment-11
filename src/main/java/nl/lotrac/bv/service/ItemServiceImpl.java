@@ -36,6 +36,11 @@ public class ItemServiceImpl implements ItemService {
     private JobRepository jobRepository;
 
 
+    @Autowired
+    private ExtractUserName extractUserName;
+
+
+
     @Override
     public Item addJob(AddJob addJob) {
 
@@ -84,7 +89,7 @@ public class ItemServiceImpl implements ItemService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 
 
-        String username = ExtractUserName.ExtractUserNameFromJwt();
+        String username = extractUserName.extractUserNameFromJwt();
         log.debug("!!! username:  " + username);
 
 

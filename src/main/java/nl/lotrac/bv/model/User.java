@@ -37,8 +37,11 @@ public class User {
     @Column
     private String email;
 
-
-
+public User(){
+    }
+    public User(String username) {
+        this.username = username;
+    }
 
     @OneToMany
     @JoinColumn(name = "fk1_user")

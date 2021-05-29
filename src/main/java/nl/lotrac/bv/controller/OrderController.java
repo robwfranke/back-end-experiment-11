@@ -24,6 +24,11 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private ExtractUserName extractUserName;
+
+
+
 
     //********************************************************************************
     @PostMapping(value = "/create")
@@ -58,7 +63,7 @@ public class OrderController {
     //********************************************************************************
     @GetMapping(value = "/inlog")
     public ResponseEntity<Object> getAllOrdersByInlogNameOnly() {
-        String user = ExtractUserName.ExtractUserNameFromJwt();
+        String user = extractUserName.extractUserNameFromJwt();
         List<Order> orders = orderService.getAllOrdersByUser(user);
         return ResponseEntity.ok().body(orders);
     }

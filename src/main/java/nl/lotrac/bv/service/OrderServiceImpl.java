@@ -28,10 +28,15 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+
+    private ExtractUserName extractUserName;
+
+
     @Override
     public String createNewOrder(Order order) {
 
-        String username = ExtractUserName.ExtractUserNameFromJwt();
+        String username = extractUserName.extractUserNameFromJwt();
         User user = userRepository.getUserByUsername(username);
 
 
