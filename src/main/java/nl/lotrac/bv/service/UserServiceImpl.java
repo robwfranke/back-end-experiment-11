@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
     public String createUser(User user) {
         if (userRepository.existsById(user.getUsername()))
             throw new NameExistsException(user.getUsername() + "  exists!!");
-        System.out.println("create user");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User newUser = userRepository.save(user);
         return (newUser.getUsername());
