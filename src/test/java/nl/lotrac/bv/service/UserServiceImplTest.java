@@ -40,14 +40,14 @@ class UserServiceImplTest {
     void userExists() {
 //        arrange
         String username="piet";
-
+//mock, definieer alle afhankelijkheden
         when(userRepository.existsById("piet")).thenReturn(true);
-
 
 //        act
 
         boolean result = userService.userExists(username);
 
+//        assert
         assertThat(result).isTrue();
 
 //        verify hier test je daadwerkelijk wat echt aangeroepen is.
@@ -55,7 +55,6 @@ class UserServiceImplTest {
 
         verify(userRepository).existsById(username);
         verifyNoMoreInteractions(userRepository,passwordEncoder,addressRepository);
-
     }
 
     @Test
@@ -64,7 +63,6 @@ class UserServiceImplTest {
         String username="piet";
 
         when(userRepository.existsById("piet")).thenReturn(false);
-
 
 //        act
 
@@ -78,6 +76,7 @@ class UserServiceImplTest {
         verify(userRepository).existsById(username);
         verifyNoMoreInteractions(userRepository,passwordEncoder,addressRepository);
 
+
     }
 
 
@@ -86,9 +85,19 @@ class UserServiceImplTest {
     @Test
     void createUserExists() {
 
+//        public String createUser(User user) {
+//            if (userRepository.existsById(user.getUsername()))
+//                throw new NameExistsException(user.getUsername() + "  exists!!");
+//            user.setPassword(passwordEncoder.encode(user.getPassword()));
+//            User newUser = userRepository.save(user);
+//            return (newUser.getUsername());
+//        }
+
+
         User testUser=mock(User.class);
         String username="piet";
-        when(testUser.getUsername()).thenReturn(username);
+
+        when(testUser.getUsername()).thenReturn(username);/*(userRepository.existsById(user.getUsername()))*/
         when(userRepository.existsById(username)).thenReturn(true);
 
         try {
@@ -102,12 +111,68 @@ class UserServiceImplTest {
 
         verify(userRepository).existsById(username);
         verifyNoMoreInteractions(userRepository,passwordEncoder,addressRepository);
-
-
     }
+
+
+
+    @Test
+    void createUserDoesNotExists() {
+
+//arrange
+        User testUser=mock(User.class);
+        User newUser=mock(User.class);
+
+
+        String username="piet";
+        String passwordReturn= "qrt";
+        String encodedPassword= "hcxh";
+
+
+//mock, definieer alle afhankelijkheden
+
+        when(testUser.getUsername()).thenReturn(username);
+        when(userRepository.existsById(username)).thenReturn(false);
+
+        when(testUser.getPassword()).thenReturn(passwordReturn);
+        when(passwordEncoder.encode(passwordReturn)).thenReturn(encodedPassword);
+        when(userRepository.save(testUser)).thenReturn(newUser);
+
+
+
+//        act
+        User result=userService.createUser(testUser);
+
+
+            assertThat(result).isEqualTo(newUser);
+
+
+
+        verify(userRepository).existsById(username);
+        verify(passwordEncoder).encode(passwordReturn);
+        verify(userRepository).save(testUser);
+        verifyNoMoreInteractions(userRepository,passwordEncoder,addressRepository);
+    }
+
+
+
+
+
+
+
 
     @Test
     void updateUser() {
+
+
+
+
+
+
+
+
+
+
+
     }
 
     @Test

@@ -2,7 +2,6 @@ package nl.lotrac.bv.service;
 
 
 import lombok.extern.slf4j.Slf4j;
-import nl.lotrac.bv.controller.model.CreateCustomerWithAddress;
 import nl.lotrac.bv.exceptions.*;
 import nl.lotrac.bv.model.*;
 
@@ -10,6 +9,7 @@ import nl.lotrac.bv.repository.AddressRepository;
 import nl.lotrac.bv.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -40,19 +40,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String createUser(User user) {
+    public User createUser(User user) {
         if (userRepository.existsById(user.getUsername()))
             throw new NameExistsException(user.getUsername() + "  exists!!");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User newUser = userRepository.save(user);
-        return (newUser.getUsername());
+        return (newUser);
     }
+
 
     @Override
     public void updateUser(String username, User newUser) {
 
-        log.debug("updateUser   newUser "+newUser);
-        if (!userRepository.existsById(username)) throw new NameNotFoundException("user does not exists");
+        if (!userRepository.existsById(username))
+            throw new NameNotFoundException("user does not exists");
         User user = userRepository.findById(username).get();
         user.setEmail(newUser.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -66,7 +67,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-        log.debug("UserServiceImpl, getUser");
         User user = userRepository.getUserByUsername(username);
         return user;
     }
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Set<Authority> getAuthorities(String username) {
+     public Set<Authority> getAuthorities(String username) {
         if (!userRepository.existsById(username)) throw new NameNotFoundException(username);
         User user = userRepository.findById(username).get();
         return user.getAuthorities();

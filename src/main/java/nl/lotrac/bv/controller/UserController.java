@@ -41,16 +41,14 @@ public class UserController {
 
 
     @PostMapping(value = "/create")
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
 
-        String newUsername = userService.createUser(user);
+        User newUser = userService.createUser(user);
         userService.addAuthority(user.getUsername(), Role.COMPANY_USER);
-        MessageFrontEnd messageFrontEnd = new MessageFrontEnd("User: " + newUsername + "  created");
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
-                .buildAndExpand(newUsername).toUri();
+                .buildAndExpand(newUser.getUsername()).toUri();
 
-//        return ResponseEntity.created(location).build();
-        return ResponseEntity.created(location).body(messageFrontEnd);
+        return ResponseEntity.created(location).body(newUser);
     }
 
 
