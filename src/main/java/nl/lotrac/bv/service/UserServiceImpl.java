@@ -9,7 +9,6 @@ import nl.lotrac.bv.repository.AddressRepository;
 import nl.lotrac.bv.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -50,14 +49,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void updateUser(String username, User newUser) {
+    public User updateUser(String username, User newUser) {
 
-        if (!userRepository.existsById(username))
-            throw new NameNotFoundException("user does not exists");
-        User user = userRepository.findById(username).get();
+        User user = userRepository.findById(username).orElseThrow(() -> new NameNotFoundException("user does not exist"));
+//        laat return type zien
+//        Optional<User> byId = userRepository.findById(username);
+
+
         user.setEmail(newUser.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        User newUser1=userRepository.save(user);
+        return (newUser1);
     }
 
     @Override

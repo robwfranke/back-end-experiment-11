@@ -10,8 +10,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -141,14 +144,15 @@ class UserServiceImplTest {
 
 
     @Test
-    void updateUserDoesNotExists() {
+    void updateUserDoesNotExist() {
 
 //        Arrange
 
         User testUser = mock(User.class);
         String username = "piet";
 
-        when(!userRepository.existsById(username)).thenReturn(false);
+        when(userRepository.findById(username)).thenReturn(Optional.empty());
+        Optional.of("gg").orElse("jdjd");
 
 //        act
         try {
@@ -157,28 +161,94 @@ class UserServiceImplTest {
         } catch (NameNotFoundException ex) {
 
 //            assert
-            assertThat(ex).hasMessage("user does not exists");
+            assertThat(ex).hasMessage("user does not exist");
         }
     }
 
 
+    @Test
+    void updateUserExist() {
+
+//        Arrange
+
+        User testUser = mock(User.class);
+        User newUser = mock(User.class);
 
 
+        String username = "piet";
+        String passwordReturn = "qrt";
+        String encodedPassword = "hcxh";
 
 
+//mock, definieer alle afhankelijkheden
 
+
+        when(userRepository.findById(username)).thenReturn(Optional.of(testUser));
+
+        when(testUser.getPassword()).thenReturn(passwordReturn);
+        when(passwordEncoder.encode(passwordReturn)).thenReturn(encodedPassword);
+
+        when(userRepository.save(testUser)).thenReturn(newUser);
+//        deze newUser is dan het gedeelte van isEqualTo
+
+
+//        act
+//        userService.updateUser(username, testUser);
+
+        User result = userService.updateUser(username, testUser);
+//
+        assertThat(result).isEqualTo(newUser);
+
+
+        verify(passwordEncoder).encode(passwordReturn);
+        verify(userRepository).save(testUser);
+        verifyNoMoreInteractions(userRepository, passwordEncoder, addressRepository);
+
+
+    }
 
 
     @Test
     void deleteUser() {
+
+        String username = "piet";
+//hier kun je alleen methode teste, geen mock nodig
+
+
+//        act
+
+        userService.deleteUser(username);
+
+
+//        verify hier test je daadwerkelijk wat echt aangeroepen is.
+        verify(userRepository).deleteById(username);
+        verifyNoMoreInteractions(userRepository, passwordEncoder, addressRepository);
     }
+
 
     @Test
     void getUserByUsername() {
+// Arrange
+        User testUser = mock(User.class);
+        String username = "piet";
+
+        when(userRepository.getUserByUsername(username)).thenReturn(testUser);
+
+//        Act
+        userService.getUserByUsername(username);
+
+
+//        verify hier test je daadwerkelijk wat echt aangeroepen is.
+        verify(userRepository).getUserByUsername(username);
+        verifyNoMoreInteractions(userRepository, passwordEncoder, addressRepository);
+
+
     }
 
     @Test
     void getUsers() {
+
+
     }
 
     @Test
