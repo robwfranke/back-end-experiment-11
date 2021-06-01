@@ -9,12 +9,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Collection;
 import java.util.Optional;
+import java.util.AbstractList;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -247,6 +251,21 @@ class UserServiceImplTest {
 
     @Test
     void getUsers() {
+//        Collection mockCollection = mock(Collection.class);
+//        User user1=mock(User.class);
+//        User user2=mock(User.class);
+//        User user3=mock(User.class);
+//
+//        mockCollection.add(user1);
+//        mockCollection.add(user2);
+//        mockCollection.add(user3);
+//
+////        userService.getUsers();
+//
+//assertThat(mockCollection).hasSize(3);
+
+        userService.getUsers();
+
 
 
     }

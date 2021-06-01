@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Collection<User> getUsers() {
+
         return userRepository.findAll();
     }
 
@@ -88,15 +89,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
      public Set<Authority> getAuthorities(String username) {
-        if (!userRepository.existsById(username)) throw new NameNotFoundException(username);
-        User user = userRepository.findById(username).get();
+        User user = userRepository.findById(username).orElseThrow(() -> new NameNotFoundException("user does not exist"));
+
+//        if (!userRepository.existsById(username)) throw new NameNotFoundException(username);
+//        User user = userRepository.findById(username).get();
         return user.getAuthorities();
     }
 
     @Override
     public void addAuthority(String username, Role authority) {
-        if (!userRepository.existsById(username)) throw new NameNotFoundException(username);
-        User user = userRepository.findById(username).get();
+        User user = userRepository.findById(username).orElseThrow(() -> new NameNotFoundException("user does not exist"));
+
+//        if (!userRepository.existsById(username)) throw new NameNotFoundException(username);
+//        User user = userRepository.findById(username).get();
         user.addAuthority(new Authority(username, authority));
         userRepository.save(user);
     }
