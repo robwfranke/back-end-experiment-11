@@ -156,7 +156,7 @@ class UserServiceImplTest {
         String username = "piet";
 
         when(userRepository.findById(username)).thenReturn(Optional.empty());
-        Optional.of("gg").orElse("jdjd");
+//        Optional.of("gg").orElse("jdjd");
 
 //        act
         try {
@@ -236,18 +236,17 @@ class UserServiceImplTest {
         User testUser = mock(User.class);
         String username = "piet";
 
+
         when(userRepository.getUserByUsername(username)).thenReturn(testUser);
 
-//        Act
         userService.getUserByUsername(username);
 
 
 //        verify hier test je daadwerkelijk wat echt aangeroepen is.
         verify(userRepository).getUserByUsername(username);
         verifyNoMoreInteractions(userRepository, passwordEncoder, addressRepository);
+   }
 
-
-    }
 
     @Test
     void getUsers() {

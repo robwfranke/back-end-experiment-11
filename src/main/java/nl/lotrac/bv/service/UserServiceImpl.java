@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-@Autowired
+    @Autowired
     private AddressRepository addressRepository;
 
 
@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
     public boolean userExists(String username) {
         return userRepository.existsById(username);
     }
-
 
 
     @Override
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
         user.setEmail(newUser.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User newUser1=userRepository.save(user);
+        User newUser1 = userRepository.save(user);
         return (newUser1);
     }
 
@@ -77,6 +76,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Collection<User> getUsers() {
 
+
         return userRepository.findAll();
     }
 
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-     public Set<Authority> getAuthorities(String username) {
+    public Set<Authority> getAuthorities(String username) {
         User user = userRepository.findById(username).orElseThrow(() -> new NameNotFoundException("user does not exist"));
 
 //        if (!userRepository.existsById(username)) throw new NameNotFoundException(username);

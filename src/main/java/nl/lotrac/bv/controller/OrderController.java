@@ -34,6 +34,8 @@ public class OrderController {
     @PostMapping(value = "/create")
     public ResponseEntity<Object> createNewOrder(@RequestBody Order order) {
 
+        log.debug("COntroller debug");
+
         String newOrderName = orderService.createNewOrder(order);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{create}")

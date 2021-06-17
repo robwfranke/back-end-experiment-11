@@ -9,6 +9,7 @@ import nl.lotrac.bv.model.User;
 import nl.lotrac.bv.repository.OrderRepository;
 import nl.lotrac.bv.repository.UserRepository;
 import nl.lotrac.bv.utils.ExtractUserName;
+import org.hibernate.mapping.IdentifierBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,18 +36,28 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String createNewOrder(Order order) {
-
+        log.debug("order", order);
         String username = extractUserName.extractUserNameFromJwt();
+        log.debug("createNewOrder username", username);
         User user = userRepository.getUserByUsername(username);
 
-
-        if (orderRepository.getOrderByOrdername(order.getOrdername()) != null)
+//
+//        boolean found = false;
+//        for (Order o : user.getOrders()) {
+//            if (
+//                    {
+//                found = true;
+//                break;
+//            }
+//        }
+        if (user.getOrders().stream().anyMatch(o-> order.getOrdername().equals(o.getOrdername())))
+//        if (orderRepository.getOrderByOrdername(order.getOrdername()) != null)
             throw new NameExistsException("order exists");
 
 //        jpa weet nu, via de foreign key dat hier username komt te staan
 
         order.setUser(user);
-        order.setStatus("pending");
+        order.setStatus("open");
         Order newOrder = orderRepository.save(order);
         return (newOrder.getOrdername());
     }
