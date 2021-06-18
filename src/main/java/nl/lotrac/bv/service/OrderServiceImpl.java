@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,16 +42,18 @@ public class OrderServiceImpl implements OrderService {
         log.debug("createNewOrder username", username);
         User user = userRepository.getUserByUsername(username);
 
+
 //
 //        boolean found = false;
 //        for (Order o : user.getOrders()) {
-//            if (
-//                    {
+//            if (o.getOrdername().equals(order.getOrdername())) {
 //                found = true;
 //                break;
 //            }
 //        }
-        if (user.getOrders().stream().anyMatch(o-> order.getOrdername().equals(o.getOrdername())))
+
+
+        if (user.getOrders().stream().anyMatch(o -> order.getOrdername().equals(o.getOrdername())))
 //        if (orderRepository.getOrderByOrdername(order.getOrdername()) != null)
             throw new NameExistsException("order exists");
 
@@ -106,19 +109,56 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public void updateOrder(String ordername, Order newOrder) {
-        log.debug("update order: " + newOrder);
-        System.out.println("ordername");
-        Order order = orderRepository.getOrderByOrdername(ordername);
+    public void updateOrder(String ordername, Order updateOrder) {
 
-        if (order == null)
+
+        String username = extractUserName.extractUserNameFromJwt();
+
+        User user = userRepository.getUserByUsername(username);
+
+
+        log.debug("ordername:  " + ordername);
+
+
+        log.debug("update order: " + updateOrder);
+        log.debug("username: " + username);
+
+        log.debug("user: " + user.getUsername());
+
+
+        log.debug("updateOrder.getOrdername(): " + updateOrder.getOrdername());
+        log.debug("updateOrder.getgetStatus(): "+updateOrder.getStatus());
+
+
+        for (Order o : user.getOrders()) {
+            log.debug(o.getOrdername());
+        }
+
+
+//        log.debug("orders in update order voor rob", user.getOrders().size());
+
+        Order orderFound = new Order();
+
+        boolean found = false;
+        for (Order loop : user.getOrders()) {
+            if (loop.getOrdername().equals(updateOrder.getOrdername())) {
+                orderFound=loop;
+                found = true;
+                break;
+            }
+        }
+        log.debug("found" + found);
+
+
+//        Order order = orderRepository.getOrderByOrdername(ordername);
+
+        if (found == false)
             throw new NameNotFoundException("order does not exists");
 
-
-        order.setStatus(newOrder.getStatus());
-
-        orderRepository.save(order);
-
+//
+        orderFound.setStatus(updateOrder.getStatus());
+//
+        orderRepository.save(orderFound);
 
     }
 
