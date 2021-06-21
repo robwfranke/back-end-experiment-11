@@ -18,4 +18,7 @@ public interface ItemService {
 
    //    In repository staat getItemByItemName
    public abstract Item getOneItemByName(String itemname);
+
+ public abstract void deleteItem(long id);
+
 }

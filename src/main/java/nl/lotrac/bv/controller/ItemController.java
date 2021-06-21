@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import nl.lotrac.bv.controller.model.AddJob;
 import nl.lotrac.bv.controller.model.CreateItem;
 import nl.lotrac.bv.model.Item;
+import nl.lotrac.bv.model.Role;
 import nl.lotrac.bv.repository.OrderRepository;
 import nl.lotrac.bv.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,5 +75,10 @@ public class ItemController {
 
     }
 
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<Object> deleteItem(@PathVariable("id") long id) {
+       itemService.deleteItem(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

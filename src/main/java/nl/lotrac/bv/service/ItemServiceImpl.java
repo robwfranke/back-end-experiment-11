@@ -168,4 +168,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
+
+    @Override
+    public void deleteItem(long id) {
+        log.debug("id:",id);
+        if (!itemRepository.existsById(id)) throw new NameNotFoundException("pipo");
+        itemRepository.deleteById(id);
+    }
+
 }
