@@ -17,7 +17,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "files")
-public class FileEntity {
+public class FileDB {
 
 
     @Id
@@ -27,12 +27,21 @@ public class FileEntity {
 
     private String name;
 
-    private String contentType;
-
-    private Long size;
+    private String type;
 
     @Lob
     private byte[] data;
+
+    public FileDB() {
+
+    }
+
+    public FileDB(String name, String type, byte[] data) {
+        this.name = name;
+        this.type = type;
+        this.data = data;
+    }
+
 
 
 }

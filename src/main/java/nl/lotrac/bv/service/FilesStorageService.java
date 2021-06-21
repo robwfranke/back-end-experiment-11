@@ -7,6 +7,10 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public interface FilesStorageService {
+  static void store(MultipartFile file) {
+
+  }
+
   public void init();
 
   public void save(MultipartFile file);
