@@ -81,4 +81,13 @@ public class ItemController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @DeleteMapping(value = "/delete/itemname/{itemname}")
+    public ResponseEntity<Object> deleteItem1(@PathVariable("itemname") String itemname) {
+        itemService.deleteItem1(itemname);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
 }

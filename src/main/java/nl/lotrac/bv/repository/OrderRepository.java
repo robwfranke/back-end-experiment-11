@@ -12,5 +12,7 @@ List<Order> getOrdersByUser(User user);
 
     Order getOrderByOrdername(String orderName);
 
+    Order getOrderByOrdernameAndItems(String orderName, String itemname);
+
 
 }

@@ -1,7 +1,7 @@
 
 -- ************************** users ****************************************
 
-INSERT INTO users (username, password, enabled) VALUES ('customer1', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE);/*password: customer */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer1', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer1@gmail.com');/*password: customer */
 INSERT INTO users (username, password, enabled) VALUES ('customer2', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE);/*password: customer */
 INSERT INTO users (username, password, enabled) VALUES ('customer3', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE);/*password: customer */
 INSERT INTO users (username, password, enabled) VALUES ('customer4', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE);/*password: customer */
@@ -66,7 +66,7 @@ INSERT INTO linktable_item_job (fk_item, fk_job) VALUES ('1', '4');
 
 
 
-INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 1', 'city 1','PC1111','tel1111111','customer1');
-INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 2', 'city 2','PC2222','tel2222222','customer2');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 1', 'city 1','PC1111','0123456789','customer1');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 2', 'city 2','PC2222','9876543210','customer2');
 -- INSERT INTO address (user_id,street,city,postalcode,telnumber) VALUES (3,'straat 3', 'city 3','PC3333','tel3333333');
 -- INSERT INTO address (user_id,street,city,postalcode,telnumber) VALUES (4,'straat 4', 'city 4','PC4444','tel4444444');

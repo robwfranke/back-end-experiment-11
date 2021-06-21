@@ -14,4 +14,9 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     void deleteById(String itemname);
 
+    boolean existsById(String itemname);
+    boolean existsByItemname(String itemname);
+
+    void deleteByItemname(String itemname);
+
 }

@@ -8,17 +8,20 @@ import java.util.List;
 
 public interface ItemService {
 
-  Item createNewItem(CreateItem item);
+    Item createNewItem(CreateItem item);
 
-   public abstract List<Item> getAllItems();
+    public abstract List<Item> getAllItems();
 
-   public abstract Item getOneItemByID(Long id);
+    public abstract Item getOneItemByID(Long id);
 
-   public abstract Item addJob (AddJob addJob);
+    public abstract Item addJob(AddJob addJob);
 
-   //    In repository staat getItemByItemName
-   public abstract Item getOneItemByName(String itemname);
+    //    In repository staat getItemByItemName
+    public abstract Item getOneItemByName(String itemname);
 
- public abstract void deleteItem(long id);
+    public abstract void deleteItem(long id);
+
+    public abstract void deleteItem1(String itemname);
+
 
 }

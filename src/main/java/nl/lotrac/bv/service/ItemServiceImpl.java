@@ -89,6 +89,7 @@ public class ItemServiceImpl implements ItemService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 
 
+
         String username = extractUserName.extractUserNameFromJwt();
         log.debug("!!! username:  " + username);
 
@@ -175,5 +176,35 @@ public class ItemServiceImpl implements ItemService {
         if (!itemRepository.existsById(id)) throw new NameNotFoundException("pipo");
         itemRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteItem1(String itemname) {
+
+
+
+
+
+
+
+
+
+
+//        if (itemRepository.getItemByItemname(itemname) != null){
+//            Item item1 = itemRepository.getItemByItemname(itemname);
+//            log.debug("item" + item1);
+//
+//            throw new NameExistsException("Item exists");
+////            log.debug("id:",itemname);
+//        }
+
+
+//
+//        log.debug("itemname: in deleteItem1",itemname);
+//        log.debug("2");
+//        if (!itemRepository.existsByItemname(itemname)) throw new NameNotFoundException("itemname niet aanwezig");
+//        log.debug("dus wel aanwezig");
+//        itemRepository.deleteByItemname(itemname);
+    }
+
 
 }
