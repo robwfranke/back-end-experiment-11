@@ -8,8 +8,13 @@ import nl.lotrac.bv.service.FilesStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -29,15 +34,27 @@ public class FileController {
 
 
     @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+//    public ResponseEntity<String> uploadFile(@RequestParam("files") MultipartFile files)throws Exception{
+    public ResponseEntity<ResponseMessage> uploadFiles(@RequestParam("files") MultipartFile files) {
+        log.debug("in Controller FilesController");
+        log.debug("filename"+files.getOriginalFilename());
+//        log.debug(""+files.length);
         String message = "";
+//        log.debug(StringUtils.cleanPath(files.getOriginalFilename()));
+//      return ResponseEntity.ok("Hello");
         try {
-            FilesStorageService.store(file);
+            List<String> fileNames = new ArrayList<>();
 
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+
+//            for (MultipartFile file : (files)) {
+//                filesStorageService.save(file);
+//                fileNames.add(file.getOriginalFilename());
+//            }
+
+            message = "Uploaded the files successfully: " + fileNames;
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+            message = "Fail to upload files!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }

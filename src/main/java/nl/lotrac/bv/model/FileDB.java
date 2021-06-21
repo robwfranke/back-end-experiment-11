@@ -27,7 +27,10 @@ public class FileDB {
 
     private String name;
 
+    private String contentType;
+
     private String type;
+    private Long size;
 
     @Lob
     private byte[] data;

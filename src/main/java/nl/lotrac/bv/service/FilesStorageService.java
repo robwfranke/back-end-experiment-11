@@ -11,7 +11,7 @@ public interface FilesStorageService {
   static void store(MultipartFile file) {
 
   }
-
+  public void save(MultipartFile file);
   public abstract FileDB getFile(String id);
   public abstract Stream<FileDB> getAllFiles();
 //  public abstract FileDB store(MultipartFile file);
