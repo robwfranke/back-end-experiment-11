@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/items")
+@RequestMapping(value = "/files")
 
 
 @Slf4j
