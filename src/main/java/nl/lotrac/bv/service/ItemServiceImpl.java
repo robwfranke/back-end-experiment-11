@@ -13,12 +13,14 @@ import nl.lotrac.bv.repository.JobRepository;
 import nl.lotrac.bv.repository.ItemRepository;
 import nl.lotrac.bv.repository.OrderRepository;
 
+import nl.lotrac.bv.repository.UserRepository;
 import nl.lotrac.bv.utils.ExtractUserName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +29,7 @@ import java.util.Optional;
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
-   private ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -35,10 +37,12 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private JobRepository jobRepository;
 
+    @Autowired
+    private UserService userService;
+
 
     @Autowired
     private ExtractUserName extractUserName;
-
 
 
     @Override
@@ -46,8 +50,6 @@ public class ItemServiceImpl implements ItemService {
 
         Item item = itemRepository.getItemByItemname(addJob.getItemName());
         Job job = jobRepository.getJobByJobname(addJob.getJobName());
-
-
 
 
 //check of item bestaat
@@ -63,7 +65,7 @@ public class ItemServiceImpl implements ItemService {
         if (item.getJobsFromItem() == null) {
             List<Job> jobs = List.of(job);
             item.setJobsFromItem(jobs);
-        } else if( item.getJobsFromItem().contains(job)){
+        } else if (item.getJobsFromItem().contains(job)) {
 
             throw new NameNotFoundException("job does exists");
 
@@ -78,7 +80,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
-@Override
+    @Override
     public Item createNewItem(CreateItem createItem) {
         log.debug(createItem.toString());
 
@@ -87,7 +89,6 @@ public class ItemServiceImpl implements ItemService {
 //        check of deze order bestaat
         if (order == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-
 
 
         String username = extractUserName.extractUserNameFromJwt();
@@ -157,7 +158,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
-    //    In repository staat getOrderLineByItemName
     @Override
     public Item getOneItemByName(String itemname) {
 
@@ -169,41 +169,28 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
-
     @Override
     public void deleteItem(long id) {
-        log.debug("id:",id);
+        log.debug("id:", id);
         if (!itemRepository.existsById(id)) throw new NameNotFoundException("pipo");
         itemRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteItem1(String itemname) {
+        String username = extractUserName.extractUserNameFromJwt();
+        log.debug("!!! username:  " + username);
+
+        log.debug("itemname:  " + itemname);
+       if(userService.getUserByUsername(username).getOrders().stream()
+                .anyMatch(order->order.getItems().stream().anyMatch(item->item.getItemname().equals(itemname)))){
+           itemRepository.deleteByItemname(itemname);
+
+       }
 
 
 
-
-
-
-
-
-
-
-//        if (itemRepository.getItemByItemname(itemname) != null){
-//            Item item1 = itemRepository.getItemByItemname(itemname);
-//            log.debug("item" + item1);
-//
-//            throw new NameExistsException("Item exists");
-////            log.debug("id:",itemname);
-//        }
-
-
-//
-//        log.debug("itemname: in deleteItem1",itemname);
-//        log.debug("2");
-//        if (!itemRepository.existsByItemname(itemname)) throw new NameNotFoundException("itemname niet aanwezig");
-//        log.debug("dus wel aanwezig");
-//        itemRepository.deleteByItemname(itemname);
     }
 
 

@@ -2,13 +2,13 @@
 -- ************************** users ****************************************
 
 INSERT INTO users (username, password, enabled, email) VALUES ('customer1', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer1@gmail.com');/*password: customer */
-INSERT INTO users (username, password, enabled) VALUES ('customer2', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE);/*password: customer */
-INSERT INTO users (username, password, enabled) VALUES ('customer3', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE);/*password: customer */
-INSERT INTO users (username, password, enabled) VALUES ('customer4', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE);/*password: customer */
-INSERT INTO users (username, password, enabled) VALUES ('rob', '$2a$10$Tc5D3zX6Ilabdc80lj6bLO/zuI8TQueM7UC8WHghPxBvH/SOl1pGu', TRUE);/*password: 123456 */
-INSERT INTO users (username, password, enabled) VALUES ('karel', '$2a$10$Tc5D3zX6Ilabdc80lj6bLO/zuI8TQueM7UC8WHghPxBvH/SOl1pGu', TRUE);/*password: 123456 */
-INSERT INTO users (username, password, enabled) VALUES ('user', '$2y$12$ib7HLC5a/du7UNFgRggGteXvr0SyclZiMSwdMXXZ1uwYyzFfBTkV.', TRUE);/*password: user */
-INSERT INTO users (username, password, enabled) VALUES ('admin', '$2y$12$STmgp8r1FxIQpmOlD9osTuAnYZQ4s8qahccMT.vgatkEE6I8ev8s.', TRUE);/*password: admin */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer2', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer2@gmail.com');/*password: customer */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer3', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer3@gmail.com');/*password: customer */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer4', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer4@gmail.com');/*password: customer */
+INSERT INTO users (username, password, enabled, email) VALUES ('rob', '$2a$10$Tc5D3zX6Ilabdc80lj6bLO/zuI8TQueM7UC8WHghPxBvH/SOl1pGu', TRUE,'rob@gmail.com');/*password: 123456 */
+INSERT INTO users (username, password, enabled, email) VALUES ('karel', '$2a$10$Tc5D3zX6Ilabdc80lj6bLO/zuI8TQueM7UC8WHghPxBvH/SOl1pGu', TRUE,'karel@gmail.com');/*password: 123456 */
+INSERT INTO users (username, password, enabled, email) VALUES ('user', '$2y$12$ib7HLC5a/du7UNFgRggGteXvr0SyclZiMSwdMXXZ1uwYyzFfBTkV.', TRUE,'user@gmail.com');/*password: user */
+INSERT INTO users (username, password, enabled, email) VALUES ('admin', '$2y$12$STmgp8r1FxIQpmOlD9osTuAnYZQ4s8qahccMT.vgatkEE6I8ev8s.', TRUE,'admin@gmail.com');/*password: admin */
 -- ******************************************************************************
 
 -- ************************** authorities ****************************************
@@ -68,5 +68,10 @@ INSERT INTO linktable_item_job (fk_item, fk_job) VALUES ('1', '4');
 
 INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 1', 'city 1','PC1111','0123456789','customer1');
 INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 2', 'city 2','PC2222','9876543210','customer2');
--- INSERT INTO address (user_id,street,city,postalcode,telnumber) VALUES (3,'straat 3', 'city 3','PC3333','tel3333333');
--- INSERT INTO address (user_id,street,city,postalcode,telnumber) VALUES (4,'straat 4', 'city 4','PC4444','tel4444444');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 3', 'city 3','PC3333','9876543210','customer3');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat 4', 'city 4','PC4444','9876543210','customer4');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat rob', 'city rob','PC2222','9876543210','rob');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat karel', 'city karel','PC2222','9876543210','karel');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat user', 'city user','PC2222','9876543210','user');
+INSERT INTO address (street,city,postalcode,telnumber,fk1_user) VALUES ('straat admin', 'city admin','PC2222','9876543210','admin');
+
