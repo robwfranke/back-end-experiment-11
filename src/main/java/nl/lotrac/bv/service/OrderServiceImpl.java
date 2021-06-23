@@ -4,6 +4,7 @@ package nl.lotrac.bv.service;
 import lombok.extern.slf4j.Slf4j;
 import nl.lotrac.bv.exceptions.NameExistsException;
 import nl.lotrac.bv.exceptions.NameNotFoundException;
+import nl.lotrac.bv.exceptions.RecordNotFoundException;
 import nl.lotrac.bv.model.Order;
 import nl.lotrac.bv.model.User;
 import nl.lotrac.bv.repository.OrderRepository;
@@ -175,13 +176,35 @@ public class OrderServiceImpl implements OrderService {
 
         log.debug("deleteOrderByName   ordername:  " + ordername);
 
+//        if (userService.getUserByUsername(username).getOrders().stream()
+//                .anyMatch(order -> order.getStatus().equals("open"))) {
+//
+//
+//
+//
+//        } else {
+//            log.debug("status niet open");
+//        }
+
+
+
 
         if (userService.getUserByUsername(username).getOrders().stream()
                 .anyMatch(order -> order.getOrdername().equals(ordername))) {
-            log.debug("ok");
-            orderRepository.deleteByOrdername(ordername);
+//            nu heeft de user, maar check nu of status open is!
+            log.debug("deze user heeft de order");
+
+            if (userService.getUserByUsername(username).getOrders().stream()
+                .anyMatch(order -> order.getStatus().equals("open"))) {
+                log.debug("status is open");
+                orderRepository.deleteByOrdername(ordername);
+            }
+
+
+
+
         } else {
-            log.debug("nok");
+            throw new RecordNotFoundException("voldoet niet, evt status niet open!");
         }
 
     }

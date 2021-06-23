@@ -32,7 +32,7 @@ INSERT INTO authorities (username, authority_role) VALUES ('admin', 'ADMIN');
 
 
 INSERT INTO orders (ordername, description, status, fk_user) VALUES ('order_10', 'Omschrijving order_10', 'open','customer1');
-INSERT INTO orders (ordername, description, status, fk_user) VALUES ('order_11', 'Omschrijving order_11', 'open','customer1');
+INSERT INTO orders (ordername, description, status, fk_user) VALUES ('order_11', 'Omschrijving order_11', 'pending','customer1');
 INSERT INTO orders (ordername, status, fk_user) VALUES ('order_20', 'open','customer2');
 INSERT INTO orders (ordername, status, fk_user) VALUES ('order_31', 'open','customer3');
 INSERT INTO orders (ordername, status, fk_user) VALUES ('order_32', 'open','customer3');
