@@ -21,7 +21,7 @@ public interface ItemService {
 
     public abstract void deleteItem(long id);
 
-    public abstract void deleteItem1(String itemname);
+    public abstract void deleteItemByName(String itemname);
 
 
 }

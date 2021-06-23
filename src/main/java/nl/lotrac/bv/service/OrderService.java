@@ -23,6 +23,8 @@ public interface OrderService {
 
     public abstract void updateOrder(String ordername, Order order);
 
+    public abstract void deleteOrderByName(String ordername);
+
 
 
 }

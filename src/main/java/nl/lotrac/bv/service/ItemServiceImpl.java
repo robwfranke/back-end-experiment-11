@@ -178,7 +178,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @Transactional
-    public void deleteItem1(String itemname) {
+    public void deleteItemByName(String itemname) {
         String username = extractUserName.extractUserNameFromJwt();
         log.debug("!!! username:  " + username);
 

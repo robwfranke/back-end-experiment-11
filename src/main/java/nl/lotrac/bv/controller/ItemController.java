@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import nl.lotrac.bv.controller.model.AddJob;
 import nl.lotrac.bv.controller.model.CreateItem;
 import nl.lotrac.bv.model.Item;
-import nl.lotrac.bv.model.Role;
 import nl.lotrac.bv.repository.OrderRepository;
 import nl.lotrac.bv.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +56,6 @@ public class ItemController {
     }
 
 
-//    In repository staat getOrderLineByKoekoek
 
     @GetMapping(value = "/name/{itemname}")
     public ResponseEntity<Object> getItemByName(@PathVariable("itemname") String itemname) {
@@ -83,8 +81,8 @@ public class ItemController {
 
 
     @DeleteMapping(value = "/delete/itemname/{itemname}")
-    public ResponseEntity<Object> deleteItem1(@PathVariable("itemname") String itemname) {
-        itemService.deleteItem1(itemname);
+    public ResponseEntity<Object> deleteItemByName(@PathVariable("itemname") String itemname) {
+        itemService.deleteItemByName(itemname);
         return ResponseEntity.noContent().build();
     }
 

@@ -14,5 +14,7 @@ List<Order> getOrdersByUser(User user);
 
     Order getOrderByOrdernameAndItems(String orderName, String itemname);
 
+    public abstract void deleteByOrdername(String ordername);
+
 
 }

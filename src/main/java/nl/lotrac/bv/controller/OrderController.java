@@ -98,5 +98,11 @@ public class OrderController {
     }
 //********************************************************************************
 
+@DeleteMapping(value= "/delete/ordername/{ordername}")
+    public ResponseEntity<Object>deleteOrderByName(@PathVariable("ordername")String ordername){
+      orderService.deleteOrderByName(ordername);
+    return ResponseEntity.noContent().build();
+}
+
 
 }

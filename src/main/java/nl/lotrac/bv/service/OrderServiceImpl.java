@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
 
@@ -127,7 +131,7 @@ public class OrderServiceImpl implements OrderService {
 
 
         log.debug("updateOrder.getOrdername(): " + updateOrder.getOrdername());
-        log.debug("updateOrder.getgetStatus(): "+updateOrder.getStatus());
+        log.debug("updateOrder.getgetStatus(): " + updateOrder.getStatus());
 
 
         for (Order o : user.getOrders()) {
@@ -142,7 +146,7 @@ public class OrderServiceImpl implements OrderService {
         boolean found = false;
         for (Order loop : user.getOrders()) {
             if (loop.getOrdername().equals(updateOrder.getOrdername())) {
-                orderFound=loop;
+                orderFound = loop;
                 found = true;
                 break;
             }
@@ -162,5 +166,24 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+
+    @Override
+    @Transactional
+    public void deleteOrderByName(String ordername) {
+        String username = extractUserName.extractUserNameFromJwt();
+        log.debug("deleteOrderByName  username:  " + username);
+
+        log.debug("deleteOrderByName   ordername:  " + ordername);
+
+
+        if (userService.getUserByUsername(username).getOrders().stream()
+                .anyMatch(order -> order.getOrdername().equals(ordername))) {
+            log.debug("ok");
+            orderRepository.deleteByOrdername(ordername);
+        } else {
+            log.debug("nok");
+        }
+
+    }
 
 }
