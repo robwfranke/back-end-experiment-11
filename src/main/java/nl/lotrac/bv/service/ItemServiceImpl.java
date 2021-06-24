@@ -80,6 +80,22 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
+
+    @Transactional
+    @Override
+    public void deleteJobByName(String itemname,String jobname){
+
+//        Item item = itemRepository.getItemByItemname(jobname.getItemName());
+//        Job job = jobRepository.getJobByJobname(jobname.getJobName());
+//        Job job = jobRepository.getJobByJobname(jobname);
+        log.debug("JOBNAME"+jobname);
+
+    }
+
+
+
+
+
     @Override
     public Item createNewItem(CreateItem createItem) {
         log.debug(createItem.toString());
@@ -172,7 +188,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void deleteItem(long id) {
         log.debug("id:", id);
-        if (!itemRepository.existsById(id)) throw new NameNotFoundException("pipo");
+        if (!itemRepository.existsById(id)) throw new NameNotFoundException();
         itemRepository.deleteById(id);
     }
 

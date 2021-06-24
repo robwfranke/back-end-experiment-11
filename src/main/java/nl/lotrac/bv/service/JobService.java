@@ -16,4 +16,6 @@ public interface JobService {
 //    public abstract getDepartmentByDepartment(departmentname);
 
     public abstract Job getOneJobByID(Long id);
+
+
 }

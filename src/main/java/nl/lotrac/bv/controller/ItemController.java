@@ -69,9 +69,16 @@ public class ItemController {
        log.debug(addJob.getDepartment());
 
        return ResponseEntity.ok().body(itemService.addJob(addJob));
-
-
     }
+
+    @DeleteMapping(value="/delete/job/{itemname,jobname}")
+    public ResponseEntity<Item>deleteJobByName(@PathVariable("jobname") String itemname,String jobname){
+
+        itemService.deleteJobByName(itemname,jobname);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteItem(@PathVariable("id") long id) {

@@ -22,9 +22,6 @@ public class JobController {
     private JobService jobService;
 
 
-
-
-
     //********************************************************************************
     @PostMapping(value = "/create")
     public ResponseEntity<Job> createNewJob(@RequestBody Job job) {
@@ -39,19 +36,18 @@ public class JobController {
     //********************************************************************************
 
 
-
     //********************************************************************************
     @GetMapping(value = "")
-    public ResponseEntity<Object>getAllJobs(){
+    public ResponseEntity<Object> getAllJobs() {
         return ResponseEntity.ok().body(jobService.getAllJobs());
     }
 //********************************************************************************
 
-@GetMapping(value="/{id}")
-    public ResponseEntity<Job> getOneJobByID(@PathVariable("id") Long id){
-        return new ResponseEntity<>(jobService.getOneJobByID(id),HttpStatus.OK);
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Job> getOneJobByID(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(jobService.getOneJobByID(id), HttpStatus.OK);
 
-}
+    }
 
     //********************************************************************************
     @GetMapping(value = "/jobsByDepartment/{departmentname}")
@@ -60,9 +56,4 @@ public class JobController {
         return ResponseEntity.ok().body(jobs);
     }
 //********************************************************************************
-
-
-
-
-
 }

@@ -24,4 +24,6 @@ public interface ItemService {
     public abstract void deleteItemByName(String itemname);
 
 
+    void deleteJobByName(String itemname,String jobname);
 }
+

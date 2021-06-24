@@ -6,12 +6,17 @@ import nl.lotrac.bv.exceptions.NameExistsException;
 import nl.lotrac.bv.exceptions.NameNotFoundException;
 import nl.lotrac.bv.model.Job;
 //import nl.lotrac.bv.model.Order;
+import nl.lotrac.bv.service.UserService;
 import nl.lotrac.bv.repository.JobRepository;
+import nl.lotrac.bv.utils.ExtractUserName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+
+
 
 
 @Slf4j
@@ -24,8 +29,20 @@ public class JobServiceImpl implements JobService {
     @Autowired
     private JobRepository jobRepository;
 
-    @Override
 
+
+    @Autowired
+    private UserService userService;
+
+
+    @Autowired
+    private ExtractUserName extractUserName;
+
+
+
+
+
+    @Override
     public List<Job> getAllJobs() {
         return jobRepository.findAll();
     }
@@ -40,6 +57,9 @@ public class JobServiceImpl implements JobService {
         Job newJob = jobRepository.save(job);
         return (newJob.getJobname());
     }
+
+
+
 
 
     @Override
