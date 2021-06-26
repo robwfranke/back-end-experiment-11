@@ -13,10 +13,11 @@ import lombok.ToString;
 @ToString
 
 
-
 public class
 CreateItem {
+    //data order
     private String orderName;
+    //data item
 
     private String itemName;
 
