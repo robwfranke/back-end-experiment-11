@@ -21,6 +21,7 @@ import nl.lotrac.bv.model.FileDB;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping(value = "/files")
 
 @Slf4j
 public class FileController {
@@ -42,7 +43,7 @@ public class FileController {
         }
     }
 
-    @GetMapping("/files")
+    @GetMapping("/getfiles")
     public ResponseEntity<List<ResponseFile>> getListFiles() {
         List<ResponseFile> files = fileStorageServiceImpl.getAllFiles().map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
