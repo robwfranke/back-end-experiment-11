@@ -157,7 +157,7 @@ public class OrderServiceImpl implements OrderService {
 
 //        Order order = orderRepository.getOrderByOrdername(ordername);
 
-        if (found == false)
+        if (!found )
             throw new NameNotFoundException("order does not exists");
 
 //
@@ -175,18 +175,6 @@ public class OrderServiceImpl implements OrderService {
         log.debug("deleteOrderByName  username:  " + username);
 
         log.debug("deleteOrderByName   ordername:  " + ordername);
-
-//        if (userService.getUserByUsername(username).getOrders().stream()
-//                .anyMatch(order -> order.getStatus().equals("open"))) {
-//
-//
-//git
-//
-//        } else {
-//            log.debug("status niet open");
-//        }
-
-
 
 
         if (userService.getUserByUsername(username).getOrders().stream()
