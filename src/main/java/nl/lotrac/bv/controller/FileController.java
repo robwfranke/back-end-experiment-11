@@ -80,7 +80,7 @@ public class FileController {
 
 
 
-    @DeleteMapping(value="/files/{id}")
+    @DeleteMapping(value="/delete/{id}")
     public ResponseEntity<Object>deleteFileById(@PathVariable("id")String id) {
         fileStorageServiceImpl.deleteFileById(id);
         return ResponseEntity.noContent().build();

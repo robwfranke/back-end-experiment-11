@@ -50,6 +50,8 @@ public class FileStorageServiceImpl {
     @Transactional
     public  void  deleteFileById(String id){
 
+        log.debug("deleteFileById");
+
 
         fileDBRepository.deleteById(id);
 
