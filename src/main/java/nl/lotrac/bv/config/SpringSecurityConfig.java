@@ -62,25 +62,24 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/orders/delete/**").hasRole(Role.CUSTOMER.toString())
                 .antMatchers("/users/name/**").hasRole(Role.CUSTOMER.toString())
                 .antMatchers("/items/create/**").hasRole(Role.CUSTOMER.toString())
-                .antMatchers("/files/**").hasRole(Role.CUSTOMER.toString())
+//                .antMatchers("/files/**").hasRole(Role.CUSTOMER.toString())
                 .antMatchers("/items/delete/job/**").hasRole(Role.CUSTOMER.toString())
-                .antMatchers("/files**").hasRole(Role.CUSTOMER.toString())
+//                .antMatchers("/files**").hasRole(Role.CUSTOMER.toString())
 
 
                 .antMatchers("/users/**").hasAnyRole(Role.COMPANY_USER.toString(), Role.ADMIN.toString())
                 .antMatchers("/orders/**").hasAnyRole(Role.COMPANY_USER.toString(), Role.ADMIN.toString())
                 .antMatchers("/jobs/**").hasAnyRole(Role.COMPANY_USER.toString(), Role.ADMIN.toString())
-                .antMatchers("/files/**").hasAnyRole(Role.COMPANY_USER.toString(), Role.ADMIN.toString())
+//                .antMatchers("/files/**").hasAnyRole(Role.COMPANY_USER.toString(), Role.ADMIN.toString())
 
                 .antMatchers("/admin/**").hasAnyRole(Role.CUSTOMER.toString(), Role.COMPANY_USER.toString(), Role.ADMIN.toString())
-                .antMatchers("/files/**").hasAnyRole(Role.CUSTOMER.toString(), Role.COMPANY_USER.toString(), Role.ADMIN.toString())
+//                .antMatchers("/files/**").hasAnyRole(Role.CUSTOMER.toString(), Role.COMPANY_USER.toString(), Role.ADMIN.toString())
 
 
                 .antMatchers("/authenticated").authenticated()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/files**").permitAll()
+                .antMatchers("/files/**").permitAll()
 
-//                .antMatchers("/files").permitAll()
                 .anyRequest().permitAll()
                 .and()
                 .sessionManagement()

@@ -21,7 +21,7 @@ import nl.lotrac.bv.model.FileDB;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/files")
+@RequestMapping(value = "/file")
 
 @Slf4j
 public class FileController {
@@ -49,7 +49,7 @@ public class FileController {
             String fileDownloadUri = ServletUriComponentsBuilder
 //                    hieronder wordt eea toegevoegd o.a.
                     .fromCurrentContextPath()
-                    .path("/files/")
+                    .path("/file/getfiles/")
                     .path(dbFile.getId())
                     .toUriString();
 
