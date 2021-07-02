@@ -21,7 +21,7 @@ import nl.lotrac.bv.model.FileDB;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/file")
+@RequestMapping(value = "")
 
 @Slf4j
 public class FileController {
@@ -29,7 +29,7 @@ public class FileController {
     @Autowired
     private FileStorageServiceImpl fileStorageServiceImpl;
 
-    @PostMapping("/upload")
+    @PostMapping("/files")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
         try {
@@ -86,7 +86,7 @@ public class FileController {
 
 
 
-    @DeleteMapping(value="/delete/{id}")
+    @DeleteMapping(value="/files/{id}")
     public ResponseEntity<Object>deleteFileById(@PathVariable("id")String id) {
         fileStorageServiceImpl.deleteFileById(id);
         return ResponseEntity.noContent().build();
