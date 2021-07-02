@@ -26,6 +26,7 @@ AdminController {
 
 
     @PutMapping(value = "/changeUser/{username}")
+
     public User updateUser(@PathVariable("username") String username, @RequestBody User user) {
         log.debug("Admincontroller");
         userService.updateUser(username, user);

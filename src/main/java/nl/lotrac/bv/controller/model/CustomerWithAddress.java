@@ -18,7 +18,7 @@ import javax.persistence.Id;
 
 
 public class
-CreateCustomerWithAddress {
+CustomerWithAddress {
 
 //    user details
 

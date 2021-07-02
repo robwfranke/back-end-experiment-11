@@ -1,17 +1,12 @@
 package nl.lotrac.bv.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.lotrac.bv.controller.model.AddJob;
-import nl.lotrac.bv.controller.model.CreateCustomerWithAddress;
-import nl.lotrac.bv.controller.model.CreateItem;
-import nl.lotrac.bv.model.Item;
+import nl.lotrac.bv.controller.model.CustomerWithAddress;
+import nl.lotrac.bv.model.Order;
 import nl.lotrac.bv.model.User;
-import nl.lotrac.bv.repository.OrderRepository;
 import nl.lotrac.bv.service.CustomerService;
-import nl.lotrac.bv.service.ItemService;
 import nl.lotrac.bv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -34,22 +29,27 @@ public class CustomerController {
     private UserService userService;
 
 
-
     @PostMapping(value = "")
 
-    public ResponseEntity<Object> createCustomerWithAddress(@RequestBody CreateCustomerWithAddress createCustomerWithAddress) {
+    public ResponseEntity<Object> createCustomerWithAddress(@RequestBody CustomerWithAddress customerWithAddress) {
 
-        User user = customerService.createCustomerWithAddress(createCustomerWithAddress);
+        User user = customerService.createCustomerWithAddress(customerWithAddress);
 
 //        hier adres op geven waar je customer of user kunt opvragen
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{createCustomerWithAddress}")
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("")
                 .buildAndExpand(user.getUsername()).toUri();
 
 
         return ResponseEntity.created(location).body(user);
     }
 
+    @PutMapping(value = "/update")
 
+    public ResponseEntity<Object> updateDataCustomer(@PathVariable("update") @RequestBody  CustomerWithAddress customerWithAddress) {
+        log.debug("CustomerController");
+        customerService.updateDataCustomer(customerWithAddress);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }
