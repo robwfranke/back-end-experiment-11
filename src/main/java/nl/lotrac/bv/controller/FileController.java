@@ -43,14 +43,14 @@ public class FileController {
         }
     }
 
-    @GetMapping("/getfiles")
+    @GetMapping("/files")
     public ResponseEntity<List<ResponseFile>> getListFiles() {
         List<ResponseFile> files = fileStorageServiceImpl.getAllFiles().map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
-//                    hieronder wordt eea toegevoegd o.a.
-                    .fromCurrentContextPath()
-                    .path("/file/getfiles/")
-                    .path(dbFile.getId())
+
+//                    voeg de pathname van het huidige request to en voeg een / toe!!!
+                    .fromCurrentRequest()
+                    .path("/" + dbFile.getId())
                     .toUriString();
 
             return new ResponseFile(
@@ -64,6 +64,12 @@ public class FileController {
 
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
+
+
+
+
+
+
 
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
