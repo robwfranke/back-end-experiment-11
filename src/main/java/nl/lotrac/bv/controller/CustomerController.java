@@ -35,7 +35,7 @@ public class CustomerController {
 
 
 
-    @PostMapping(value = "/createCustomerWithAddress")
+    @PostMapping(value = "")
 
     public ResponseEntity<Object> createCustomerWithAddress(@RequestBody CreateCustomerWithAddress createCustomerWithAddress) {
 
