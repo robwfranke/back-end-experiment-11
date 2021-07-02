@@ -19,28 +19,28 @@ import java.net.URI;
 @Slf4j
 public class BaseController {
 
-    @Autowired
-    private CustomerService customerService;
-    @Autowired
-    private UserService userService;
-
-
-//    new endpoint om user te maken
-
-    @PostMapping(value = "/createCustomerWithAddress")
-
-    public ResponseEntity<Object> createCustomerWithAddress(@RequestBody CreateCustomerWithAddress createCustomerWithAddress) {
-
-        User user = customerService.createCustomerWithAddress(createCustomerWithAddress);
-
-//        hier adres op geven waar je customer of user kunt opvragen
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{createCustomerWithAddress}")
-                .buildAndExpand(user.getUsername()).toUri();
-
-
-        return ResponseEntity.created(location).body(user);
-    }
-
+//    @Autowired
+//    private CustomerService customerService;
+//    @Autowired
+//    private UserService userService;
+//
+//
+////    new endpoint om user te maken
+//
+//    @PostMapping(value = "/createCustomerWithAddress")
+//
+//    public ResponseEntity<Object> createCustomerWithAddress(@RequestBody CreateCustomerWithAddress createCustomerWithAddress) {
+//
+//        User user = customerService.createCustomerWithAddress(createCustomerWithAddress);
+//
+////        hier adres op geven waar je customer of user kunt opvragen
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{createCustomerWithAddress}")
+//                .buildAndExpand(user.getUsername()).toUri();
+//
+//
+//        return ResponseEntity.created(location).body(user);
+//    }
+//
 
 
 
