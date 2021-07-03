@@ -89,6 +89,7 @@ public class ItemController {
 
     @DeleteMapping(value = "/delete/itemname/{itemname}")
     public ResponseEntity<Object> deleteItemByName(@PathVariable("itemname") String itemname) {
+        log.debug(" @DeleteMapping" +itemname);
         itemService.deleteItemByName(itemname);
         return ResponseEntity.noContent().build();
     }

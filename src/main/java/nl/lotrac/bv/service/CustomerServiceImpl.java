@@ -43,18 +43,31 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateDataCustomer(CustomerWithAddress customerWithAddress) {
+
+
         log.debug("IN updateDataCustomer");
 
         String username = extractUserName.extractUserNameFromJwt();
         User user = userRepository.getUserByUsername(username);
 
+        log.debug("updateDataCustomer,username: "+username);
+        log.debug("updateDataCustomer,password: "+customerWithAddress.getPassword());
+        log.debug("updateDataCustomer,email: "+customerWithAddress.getEmail());
+        log.debug("updateDataCustomer,city: "+customerWithAddress.getCity());
+
+        log.debug("updateDataCustomer,street: "+customerWithAddress.getStreet());
+        log.debug("updateDataCustomer,postalcode: "+customerWithAddress.getPostalcode());
+        log.debug("updateDataCustomer,telnumber: "+customerWithAddress.getTelnumber());
+
+
+
+
 //        haal adres op dat bij user hoort
 
         Address existingAddress=addressRepository.getAddressByUser(user);
+log.debug("existingAddress city: "+existingAddress.getCity());
 
-        log.debug("username in CustomerServiceImpl:" + username);
-        log.debug("user" + user);
-        log.debug("customerWithAddress"+customerWithAddress);
+
 
 
 
@@ -67,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
 
-        user.setUsername(customerWithAddress.getUsername());
+
         user.setPassword(passwordEncoder.encode(customerWithAddress.getPassword()));
 //        user.setEnabled(true);
 

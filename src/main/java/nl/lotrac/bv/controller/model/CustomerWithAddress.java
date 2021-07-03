@@ -33,11 +33,13 @@ CustomerWithAddress {
 
 //    address details
 
+    private String city;
+
 
     private String street;
 
 
-    private String city;
+
 
 
     private String postalcode;

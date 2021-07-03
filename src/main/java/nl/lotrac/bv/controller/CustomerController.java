@@ -43,9 +43,8 @@ public class CustomerController {
         return ResponseEntity.created(location).body(user);
     }
 
-    @PutMapping(value = "/update")
-
-    public ResponseEntity<Object> updateDataCustomer(@PathVariable("update") @RequestBody  CustomerWithAddress customerWithAddress) {
+    @PutMapping(value = "")
+    public ResponseEntity<Object> updateDataCustomer(@RequestBody  CustomerWithAddress customerWithAddress) {
         log.debug("CustomerController");
         customerService.updateDataCustomer(customerWithAddress);
         return ResponseEntity.noContent().build();
