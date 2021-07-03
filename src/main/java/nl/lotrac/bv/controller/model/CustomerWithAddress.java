@@ -8,13 +8,13 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
-
 
 
 public class
@@ -31,7 +31,7 @@ CustomerWithAddress {
     private String email;
 
 
-//    address details
+    //    address details
 
     private String city;
 
@@ -39,14 +39,10 @@ CustomerWithAddress {
     private String street;
 
 
-
-
-
     private String postalcode;
 
 
     private String telnumber;
-
 
 
 }

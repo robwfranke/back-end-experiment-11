@@ -9,6 +9,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 
@@ -31,7 +33,7 @@ public class Address {
     @Column(length = 255)
     private String street;
 
-    @Column(length = 255)
+   @NotBlank(message = "Mag niet leeg zijn")
     private String city;
 
     @Column(length = 255)

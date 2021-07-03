@@ -49,40 +49,49 @@ public class CustomerServiceImpl implements CustomerService {
 
         String username = extractUserName.extractUserNameFromJwt();
         User user = userRepository.getUserByUsername(username);
+        log.debug("*****************");
+        log.debug("username: " + username);
+        log.debug("existing email: " + user.getEmail());
+        log.debug("existing password: " + user.getPassword());
 
-        log.debug("updateDataCustomer,username: "+username);
-        log.debug("updateDataCustomer,password: "+customerWithAddress.getPassword());
-        log.debug("updateDataCustomer,email: "+customerWithAddress.getEmail());
-        log.debug("updateDataCustomer,city: "+customerWithAddress.getCity());
+        log.debug("*****************");
 
-        log.debug("updateDataCustomer,street: "+customerWithAddress.getStreet());
-        log.debug("updateDataCustomer,postalcode: "+customerWithAddress.getPostalcode());
-        log.debug("updateDataCustomer,telnumber: "+customerWithAddress.getTelnumber());
+        log.debug("updateDataCustomer,password: " + customerWithAddress.getPassword());
+        log.debug("updateDataCustomer,email: " + customerWithAddress.getEmail());
+        log.debug("updateDataCustomer,city: " + customerWithAddress.getCity());
 
+        log.debug("updateDataCustomer,street: " + customerWithAddress.getStreet());
+        log.debug("updateDataCustomer,postalcode: " + customerWithAddress.getPostalcode());
+        log.debug("updateDataCustomer,telnumber: " + customerWithAddress.getTelnumber());
 
+        log.debug("*****************");
 
 
 //        haal adres op dat bij user hoort
 
-        Address existingAddress=addressRepository.getAddressByUser(user);
-log.debug("existingAddress city: "+existingAddress.getCity());
+        Address existingAddress = addressRepository.getAddressByUser(user);
 
 
+        log.debug("existingAddress city: " + existingAddress.getCity());
+        log.debug("existingAddress street: " + existingAddress.getStreet());
+        log.debug("existingAddress postalcode: " + existingAddress.getPostalcode());
+        log.debug("existingAddress telnumber: " + existingAddress.getTelnumber());
 
+        if (customerWithAddress.getCity() != null){
+            existingAddress.setCity(customerWithAddress.getCity());
+        }
 
 
         existingAddress.setStreet(customerWithAddress.getStreet());
-        existingAddress.setCity(customerWithAddress.getCity());
+
         existingAddress.setPostalcode(customerWithAddress.getPostalcode());
         existingAddress.setTelnumber(customerWithAddress.getTelnumber());
 
         addressRepository.save(existingAddress);
 
 
-
-
         user.setPassword(passwordEncoder.encode(customerWithAddress.getPassword()));
-//        user.setEnabled(true);
+        userRepository.save(user);
 
 
 
