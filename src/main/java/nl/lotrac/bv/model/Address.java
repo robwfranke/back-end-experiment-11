@@ -33,7 +33,6 @@ public class Address {
     @Column(length = 255)
     private String street;
 
-   @NotBlank(message = "Mag niet leeg zijn")
     private String city;
 
     @Column(length = 255)

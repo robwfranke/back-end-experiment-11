@@ -77,20 +77,50 @@ public class CustomerServiceImpl implements CustomerService {
         log.debug("existingAddress postalcode: " + existingAddress.getPostalcode());
         log.debug("existingAddress telnumber: " + existingAddress.getTelnumber());
 
-        if (customerWithAddress.getCity() != null){
+//        if(customerWithAddress.getEmail()!=null ||
+//                customerWithAddress.getCity()!=null||
+//                customerWithAddress.getStreet()!=null||
+//                customerWithAddress.getPostalcode()!=null||
+//                customerWithAddress.getTelnumber()!=null
+//
+//        ){
+
+            log.debug("VERANDER ADDRESS");
+
+            if(customerWithAddress.getCity()!=null){
+                log.debug("Update City");
             existingAddress.setCity(customerWithAddress.getCity());
+            }
+
+        if(customerWithAddress.getStreet()!=null) {
+            log.debug("Update Street");
+            existingAddress.setStreet(customerWithAddress.getStreet());
         }
 
+        if(customerWithAddress.getPostalcode()!=null) {
+            log.debug("Update PC");
+            existingAddress.setPostalcode(customerWithAddress.getPostalcode());
+        }
+        if(customerWithAddress.getTelnumber()!=null) {
+            log.debug("Update Tel");
+            existingAddress.setTelnumber(customerWithAddress.getTelnumber());
+        }
+            addressRepository.save(existingAddress);
 
-        existingAddress.setStreet(customerWithAddress.getStreet());
+//        }
 
-        existingAddress.setPostalcode(customerWithAddress.getPostalcode());
-        existingAddress.setTelnumber(customerWithAddress.getTelnumber());
+//
+//if(customerWithAddress.getPassword().length()>=8) {
+//    log.debug("IN PASSWORDCHANGE");
+//    user.setPassword(passwordEncoder.encode(customerWithAddress.getPassword()));
+//
+//}
 
-        addressRepository.save(existingAddress);
 
+log.debug("Updaten email"+customerWithAddress.getEmail());
+        user.setEmail(customerWithAddress.getEmail());
+//        user.setEmail("pipo");
 
-        user.setPassword(passwordEncoder.encode(customerWithAddress.getPassword()));
         userRepository.save(user);
 
 
