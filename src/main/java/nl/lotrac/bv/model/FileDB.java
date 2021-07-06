@@ -1,11 +1,8 @@
 package nl.lotrac.bv.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,6 +45,10 @@ public class FileDB {
         this.data = data;
 
     }
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name="fk_user")
+    private User user;
 
 
 

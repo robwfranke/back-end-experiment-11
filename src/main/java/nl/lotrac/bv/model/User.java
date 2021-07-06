@@ -55,6 +55,12 @@ public User(){
     private List<Order> orders;
 
 
+    @OneToOne
+    @JoinColumn(name="fk_user")
+    private FileDB fileDB;
+
+
+
 
     @OneToMany(
             targetEntity = Authority.class,
