@@ -7,6 +7,7 @@ import nl.lotrac.bv.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -64,7 +65,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/items/create/**").hasRole(Role.CUSTOMER.toString())
 //                .antMatchers("/files/**").hasRole(Role.CUSTOMER.toString())
                 .antMatchers("/items/delete/job/**").hasRole(Role.CUSTOMER.toString())
-//                .antMatchers("/files**").hasRole(Role.CUSTOMER.toString())
+                .antMatchers("/files**").hasRole(Role.CUSTOMER.toString())
+                .antMatchers(HttpMethod.PUT,"/customers").hasRole(Role.CUSTOMER.toString())
+
+
+
+
 
 
                 .antMatchers("/users/**").hasAnyRole(Role.COMPANY_USER.toString(), Role.ADMIN.toString())
@@ -78,8 +84,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/authenticated").authenticated()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/files/**").permitAll()
-                .antMatchers("/customers/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/customers").permitAll()
+
+
+
 
 
 

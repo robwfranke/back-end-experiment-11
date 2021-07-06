@@ -10,14 +10,11 @@ import nl.lotrac.bv.model.User;
 import nl.lotrac.bv.repository.OrderRepository;
 import nl.lotrac.bv.repository.UserRepository;
 import nl.lotrac.bv.utils.ExtractUserName;
-import org.hibernate.mapping.IdentifierBag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,9 +38,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String createNewOrder(Order order) {
-        log.debug("order", order);
+        log.debug("order"+order);
         String username = extractUserName.extractUserNameFromJwt();
-        log.debug("createNewOrder username", username);
+        log.debug("createNewOrder username"+ username);
         User user = userRepository.getUserByUsername(username);
 
 
