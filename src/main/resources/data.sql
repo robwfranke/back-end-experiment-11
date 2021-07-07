@@ -1,14 +1,14 @@
 
 -- ************************** users ****************************************
 
-INSERT INTO users (username, password, enabled, email) VALUES ('customer1', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer1@gmail.com');/*password: customer */
-INSERT INTO users (username, password, enabled, email) VALUES ('customer2', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer2@gmail.com');/*password: customer */
-INSERT INTO users (username, password, enabled, email) VALUES ('customer3', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer3@gmail.com');/*password: customer */
-INSERT INTO users (username, password, enabled, email) VALUES ('customer4', '$2y$12$LNuyfFaHJTnx9OrNpln80uiSZ07XYOT6/V3j4QwW2mK5pU6DzrDya', TRUE,'customer4@gmail.com');/*password: customer */
-INSERT INTO users (username, password, enabled, email) VALUES ('rob', '$2a$10$Tc5D3zX6Ilabdc80lj6bLO/zuI8TQueM7UC8WHghPxBvH/SOl1pGu', TRUE,'rob@gmail.com');/*password: 123456 */
-INSERT INTO users (username, password, enabled, email) VALUES ('karel', '$2a$10$Tc5D3zX6Ilabdc80lj6bLO/zuI8TQueM7UC8WHghPxBvH/SOl1pGu', TRUE,'karel@gmail.com');/*password: 123456 */
-INSERT INTO users (username, password, enabled, email) VALUES ('user', '$2y$12$ib7HLC5a/du7UNFgRggGteXvr0SyclZiMSwdMXXZ1uwYyzFfBTkV.', TRUE,'user@gmail.com');/*password: user */
-INSERT INTO users (username, password, enabled, email) VALUES ('admin', '$2y$12$STmgp8r1FxIQpmOlD9osTuAnYZQ4s8qahccMT.vgatkEE6I8ev8s.', TRUE,'admin@gmail.com');/*password: admin */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer1', '$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'customer1@gmail.com');/*password: 12345678 */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer2', '$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'customer2@gmail.com');/*password: 12345678 */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer3', '$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'customer3@gmail.com');/*password: 12345678 */
+INSERT INTO users (username, password, enabled, email) VALUES ('customer4', '$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'customer4@gmail.com');/*password: 12345678 */
+INSERT INTO users (username, password, enabled, email) VALUES ('rob', '$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'rob@gmail.com');/*password: 12345678 */
+INSERT INTO users (username, password, enabled, email) VALUES ('karel','$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'karel@gmail.com');/*password: 12345678*/
+INSERT INTO users (username, password, enabled, email) VALUES ('user', '$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'user@gmail.com');/*password: 12345678*/
+INSERT INTO users (username, password, enabled, email) VALUES ('admin', '$2y$12$zZ18kCpfzeF8C8O8vFA9pu.1Epkibi33YnuhG5aRsKlmb28veITPm', TRUE,'admin@gmail.com');/*password: 12345678*/
 -- ******************************************************************************
 
 -- ************************** authorities ****************************************
